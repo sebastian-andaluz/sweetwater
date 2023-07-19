@@ -5,9 +5,13 @@
     $sweetwaterContents = file_get_contents($file);
 
     // Regular expression pattern to match comments
-    $pattern = "/\(\d+,'(.*?)'/s";
+    $pattern = "/\(\d+,'((?:\\\\'|[^'])*)'/s";
     preg_match_all($pattern, $sweetwaterContents, $matches);
 
+    $comments = $matches[1];
+    $comments = array_map(function ($comment) {
+        return str_replace("\\'", "'", $comment);
+    }, $comments);
 
     $categories = array(
         'Candy' => array(),
