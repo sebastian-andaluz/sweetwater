@@ -30,8 +30,6 @@
         // Remove newlines and extra spaces from the comment
         $comment = str_replace(array("\n", "\r"), ' ', $comment);
         $comment = preg_replace('/\s+/', ' ', $comment);
-        
-        // echo "Extracted comment: $comment\n";
         $comment = stripslashes($comment);
 
         if (stripos($comment, 'candy') !== false) {
